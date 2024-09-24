@@ -5,19 +5,16 @@ plugins {
     signing
 }
 
-group = "net.integr"
-version = "1.0-SNAPSHOT"
+group = "io.github.integr-0"
+version = "1.0.0"
 
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation(kotlin("test"))
-}
-
-tasks.test {
-    useJUnitPlatform()
+java {
+    withJavadocJar()
+    withSourcesJar()
 }
 
 kotlin {
@@ -40,15 +37,11 @@ publishing {
             pom {
                 name = "Regex Builder"
                 description = "Write Regex patterns in a more readable way"
-                url = "http://www.example.com/library"
-                properties = mapOf(
-                    "myProp" to "value",
-                    "prop.with.dots" to "anotherValue"
-                )
+                url = "https://github.com/Integr-0/RegexBuilder"
                 licenses {
                     license {
                         name = "The Apache License, Version 2.0"
-                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                        url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
                     }
                 }
                 developers {
@@ -59,9 +52,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection = "scm:git:git://example.com/my-library.git"
-                    developerConnection = "scm:git:ssh://example.com/my-library.git"
-                    url = "http://example.com/my-library/"
+                    connection = "scm:git:git://github.com/Integr-0/RegexBuilder.git"
+                    developerConnection = "scm:git:ssh://github.com/Integr-0/RegexBuilder.git"
+                    url = "https://github.com/Integr-0/RegexBuilder"
                 }
             }
         }
@@ -69,7 +62,6 @@ publishing {
 
     repositories {
         maven {
-            // change URLs to point to your repos, e.g. http://my.org/repo
             val releasesRepoUrl = uri(layout.buildDirectory.dir("repos/releases"))
             val snapshotsRepoUrl = uri(layout.buildDirectory.dir("repos/snapshots"))
             url = if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl
